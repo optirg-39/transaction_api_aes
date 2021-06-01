@@ -10,7 +10,7 @@ RequestPayload:
     "branch" : {"short_name":"SUN"},
     "department" : {"name":"DPV"},
     "trans_status" : "CLOSE",
-    'remarks' : "First Transaction",
+    "remarks" : "First Transaction",
     "line_items" :
         [
             {
@@ -22,7 +22,7 @@ RequestPayload:
     },
     {
 "article" : {"name" : "YarnArticle2"},
-    "color" : {"name" : "Yellow"},
+    "color" : {"name" : "Orange"},
     "quantity" : 123.45,
     "rate_per_unit" : 18,
     "unit" : "KG"
@@ -50,14 +50,13 @@ Post http://127.0.0.1:8000/transaction/items/
 
 {
     "article" : {"name" : "YarnArticle2"},
-    "color" : {"name" : "Black"},
+    "color" : {"name" : "Orange"},
     "quantity" : 123.45,
     "rate_per_unit" : 18,
     "unit" : "KG"
 
-     },
+     }
 
-	. . . . . .
 ]
 }
 
@@ -109,15 +108,23 @@ POST http://127.0.0.1:8000/transaction/inventory/
 DELETE : http://localhost:8000/transaction/<trans_number>/
 
 Example: http://127.0.0.1:8000/transaction/TRN/0001/2021/
+
 Response:{
+
 "message": "Transaction with trans_number TRN/0000/2021 contains    inventory"
+
 "status": 401}
+
+
 
 5.  View a transaction with all its line items and their inventory items.
 
 GET : http://127.0.0.1:8000/transaction/<trans_number>/
 
-http://127.0.0.1:8000/transaction/TRN/0001/2021/
+Example: http://127.0.0.1:8000/transaction/TRN/0001/2021/
+
+Response:
+
 HTTP 200 OK
 Allow: GET, POST, DELETE, HEAD, OPTIONS
 Content-Type: application/json

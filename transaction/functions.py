@@ -27,7 +27,8 @@ def CreateLineItem(trans_number, **item):
     transaction = Transaction.objects.get(trans_number=trans_number)
 
     """Two line items in a transaction cant have same combination of article and colour"""
-    check = TransactionLineItemDetails.objects.filter(Q(article=article_inst) & Q(color=color_inst) & Q(transaction__trans_number = trans_number)).exist()
+    check = TransactionLineItemDetails.objects.filter(Q(article=article_inst) & Q(color=color_inst) & Q(
+        transaction__trans_number = trans_number)).exists()
     if not check:
         item_created = TransactionLineItemDetails.objects.create(transaction=transaction, article=article_inst,
                                                          color=color_inst, **item)
